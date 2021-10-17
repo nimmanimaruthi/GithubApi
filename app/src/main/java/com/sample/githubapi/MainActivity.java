@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 // TODO Attch data to Adapter
             }
         });
+        progressBar.setVisibility(View.VISIBLE);
+        viewModel.fetchCommitRecords();
     }
 
     private void initialise() {
