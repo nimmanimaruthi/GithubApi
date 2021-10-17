@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -33,10 +34,14 @@ public class MainActivity extends AppCompatActivity {
                 .get(MainActivityViewModel.class);
 
         viewModel.registerObserver().observe(this, commitRecords -> {
+            progressBar.setVisibility(View.GONE);
             if (commitRecords == null || commitRecords.isEmpty()) {
-                // TODO display error message
+                txtMessage.setVisibility(View.VISIBLE);
+                receyclerView.setVisibility(View.GONE);
             } else {
-                // TODO display data on receylerview
+                txtMessage.setVisibility(View.GONE);
+                receyclerView.setVisibility(View.VISIBLE);
+                // TODO Attch data to Adapter
             }
         });
     }
