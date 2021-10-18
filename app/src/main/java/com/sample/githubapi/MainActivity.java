@@ -3,6 +3,8 @@ package com.sample.githubapi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.sample.githubapi.adapter.CommitAdapter;
 import com.sample.githubapi.model.CommitRecord;
 import com.sample.githubapi.viewmodel.MainActivityViewModel;
 
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 txtMessage.setVisibility(View.GONE);
                 receyclerView.setVisibility(View.VISIBLE);
-                // TODO Attch data to Adapter
+                receyclerView.setAdapter(new CommitAdapter(commitRecords));
             }
         });
         progressBar.setVisibility(View.VISIBLE);
@@ -52,5 +55,8 @@ public class MainActivity extends AppCompatActivity {
         receyclerView = findViewById(R.id.recyclerView);
         txtMessage = findViewById(R.id.txtMessage);
         progressBar = findViewById(R.id.progressBar);
+        receyclerView.setLayoutManager(new LinearLayoutManager(this));
+        receyclerView.addItemDecoration(new DividerItemDecoration(
+                        this, DividerItemDecoration.VERTICAL));
     }
 }
