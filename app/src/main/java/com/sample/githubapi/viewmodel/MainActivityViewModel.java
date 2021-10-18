@@ -33,12 +33,13 @@ public class MainActivityViewModel extends ViewModel {
                 .enqueue(new Callback<List<CommitRecord>>() {
                     @Override
                     public void onResponse(Call<List<CommitRecord>> call, Response<List<CommitRecord>> response) {
-                        Log.v(TAG, "onResponse");
+                        records.setValue(response.body());
+                        records.postValue(response.body());
                     }
 
                     @Override
                     public void onFailure(Call<List<CommitRecord>> call, Throwable t) {
-                        Log.v(TAG, "onFailure");
+                        records.postValue(null);
                     }
                 });
     }
